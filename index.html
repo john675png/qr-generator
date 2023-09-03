@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .qr-code {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <input type="text" id="text-input" placeholder="Enter text or URL">
+        <button onclick="generateQRCode()">Generate QR Code</button>
+        <div class="qr-code" id="qr-code"></div>
+        <img id="qr-image" src="" alt="QR Code" style="display: none;">
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var text = document.getElementById('text-input').value;
+            var qr = new QRious({
+                value: text,
+                size: 200
+            });
+
+            var qrImage = document.getElementById('qr-image');
+            qrImage.src = qr.toDataURL();
+            qrImage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
